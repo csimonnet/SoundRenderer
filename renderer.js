@@ -53,6 +53,7 @@ window.onload = function() {
     function convertFrequencyToRGB(frequency) {
         if (frequency < 35) {
             //red nuances
+
         } else if(frequency < 70) {
 
         } else {
