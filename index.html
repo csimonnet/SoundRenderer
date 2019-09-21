@@ -3,14 +3,15 @@
     <head>
         <title>Rendering an animated sound</title>
         <link rel="stylesheet" href="rendering.css">
-        <script src="renderer.js"></script>
     </head>
     <body>
         <div>Audio 60 BPM</div>
         <div><a href="">PLAY</a></div>
-        <div><audio controls="controls"id="audio_source"><source src="sounds/60bpm.mp3" type="audio/mp3" /></audio></div>
+        <div><audio controls="controls" id="audio_source"><source src="sounds/autopilot.mp3" type="audio/mp3" /></audio></div>
         <canvas id="rendering" style="background: black;" width="400" height="400">
         </canvas>
     </body>
-
+    <footer>
+        <script type="module" src="soundrenderer.js"></script>
+    </footer>
 </html>
