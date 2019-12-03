@@ -8,11 +8,10 @@ class ConcertMaster {
         this.audioContext = new AudioContext();
         
         if (source === SOURCE_TYPE_SYNTH) {
-            //initialiser les nodes pour le synthétiseur
+            const osc1 = this.audioContext.createOscillator();
         } else if (source instanceof HTMLAudioElement) {
             this.source = this.audioContext.createMediaElementSource(source);
             source.onplay = () => this.playFrame();
-
         }
         
         switch (visualizatorType) {
@@ -22,7 +21,6 @@ class ConcertMaster {
 
         this.analyser = new SoundAnalyser(this.audioContext);
         this.source.connect(this.analyser.getWebAnalyser());
-        //renvoyer l'audio vers sa destination
         this.source.connect(this.audioContext.destination);
 
     }
