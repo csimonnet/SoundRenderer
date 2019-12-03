@@ -1,18 +1,21 @@
 import { OscillatorVisualizator } from "./visualizator.js";
 import { SoundAnalyser } from "./analyser.js";
+import { Synthesizer } from "./synth.js";
 
 const SOURCE_TYPE_SYNTH = "synth";
 
 class ConcertMaster {
-    constructor(source, visualizatorType, canvasElement) {
+    constructor(source, visualizatorType, canvasElement, synthElement) {
         this.audioContext = new AudioContext();
         
         if (source === SOURCE_TYPE_SYNTH) {
-            //initialiser les nodes pour le synthétiseur
+            this.synthesizer = new Synthesizer(this.audioContext);
+            this.source = this.synthesizer.getSource();
+            synthElement.addEventListener('change', (event) => {
+                this.synthesizer.onChange(event)
+            });
         } else if (source instanceof HTMLAudioElement) {
             this.source = this.audioContext.createMediaElementSource(source);
-            source.onplay = () => this.playFrame();
-
         }
         
         switch (visualizatorType) {
@@ -22,13 +25,17 @@ class ConcertMaster {
 
         this.analyser = new SoundAnalyser(this.audioContext);
         this.source.connect(this.analyser.getWebAnalyser());
-        //renvoyer l'audio vers sa destination
         this.source.connect(this.audioContext.destination);
+        this.playFrame();
 
     }
 
     playFrame() {
+       
        requestAnimationFrame(() => this.playFrame());
+       if(this.analyser === undefined) {
+           return false;
+       }
        const soundData = this.analyser.getData();
        this.visualizator.justDrawIt(soundData);
     }
