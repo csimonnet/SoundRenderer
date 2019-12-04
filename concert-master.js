@@ -5,7 +5,7 @@ import { Synthesizer } from "./synth.js";
 const SOURCE_TYPE_SYNTH = "synth";
 
 class ConcertMaster {
-    constructor(source, visualizatorType, canvasElement, synthElement) {
+    constructor(source, visualizatorType, canvasElement, synthElement, keyboardElement) {
         this.audioContext = new AudioContext();
         
         if (source === SOURCE_TYPE_SYNTH) {
@@ -13,6 +13,10 @@ class ConcertMaster {
             this.source = this.synthesizer.getSource();
             synthElement.addEventListener('change', (event) => {
                 this.synthesizer.onChange(event)
+            });
+            console.log(keyboardElement);
+            keyboardElement.addEventListener('click', (event) => {
+                this.synthesizer.onChange(event);
             });
         } else if (source instanceof HTMLAudioElement) {
             this.source = this.audioContext.createMediaElementSource(source);
