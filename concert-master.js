@@ -1,4 +1,4 @@
-import { OscillatorVisualizator } from "./visualizator.js";
+import { SpectrumVisualizator } from "./spectrum-visualizator.js";
 import { SoundAnalyser } from "./analyser.js";
 import { Synthesizer } from "./synth.js";
 
@@ -14,8 +14,10 @@ class ConcertMaster {
             synthElement.addEventListener('change', (event) => {
                 this.synthesizer.onChange(event)
             });
-            console.log(keyboardElement);
-            keyboardElement.addEventListener('click', (event) => {
+            keyboardElement.addEventListener('mouseup', (event) => {
+                this.synthesizer.onChange(event);
+            });
+            keyboardElement.addEventListener('mousedown', (event) => {
                 this.synthesizer.onChange(event);
             });
         } else if (source instanceof HTMLAudioElement) {
@@ -24,7 +26,7 @@ class ConcertMaster {
         
         switch (visualizatorType) {
             default: 
-                this.visualizator = new OscillatorVisualizator(canvasElement);
+                this.visualizator = new SpectrumVisualizator(canvasElement);
         }
 
         this.analyser = new SoundAnalyser(this.audioContext);
