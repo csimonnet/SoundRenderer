@@ -1,0 +1,24 @@
+body {
+    background: black;
+    font-family: "Verdana";
+    margin: 0px;
+}
+
+header {
+    border-bottom: 1px solid black;
+    background: linear-gradient(  #D2FFA4,#4C9600);
+    text-align: center;
+
+    height: 100px;
+}
+
+h1 {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+    color: #333333;
+}
+
+#sound-renderer {
+    text-align: center;
+}

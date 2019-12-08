@@ -1,13 +1,20 @@
 <!doctype html>
 <html>
     <head>
-        <title>Rendering an animated sound</title>
-        <link rel="stylesheet" href="keyboard.css">
+        <title>Missimlab's synth</title>
+        <link rel="stylesheet" href="styles/layout.css" />
+        <link rel="stylesheet" href="styles/keyboard.css" />
     </head>
     <body>
-        <canvas id="rendering" style="background: black;" width="400" height="400">
-        </canvas>
+        <header>
+            <h1>WaveShaper</h1>
+        </header>
+        <div id="sound-renderer">
+            <canvas id="rendering" style="background: black;" width="400" height="400"></canvas>
+        </div>
+        
         <div style="display: none;"><audio controls="controls" id="audio_source"><source src="sounds/autopilot.mp3" type="audio/mp3" /></audio></div>
+
         <div id="synth-controller">
             <select id="osc-1-wavetype">
                 <option value="sine">Sine</option>
