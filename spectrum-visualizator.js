@@ -10,7 +10,7 @@ class SpectrumVisualizator {
         this.context.beginPath();
         this.context.clearRect(0,0, this.canvas.height, this.canvas.width);
         data.frequencies.forEach((amplitude, frequency) => {
-            this.context.lineTo(frequency, amplitude);
+            this.context.lineTo(frequency, (400 - amplitude) / 2);
         });
         this.context.stroke();
     }
