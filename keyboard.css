@@ -1,0 +1,12 @@
+.synth-key {
+    display: inline-block;
+    height: 200px;
+    width: 50px;
+    border: 1px solid black;
+}
+
+.synth-key.black {
+    background-color: black;
+    height: 100px;
+}
+    
