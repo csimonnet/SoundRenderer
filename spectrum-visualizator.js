@@ -3,12 +3,12 @@ class SpectrumVisualizator {
         this.canvas = canvasElement;
         this.context = canvasElement.getContext("2d");
         this.context.beginPath();
-        this.context.strokeStyle = "white";
+        this.context.strokeStyle = "#81FF00";
     }
 
     justDrawIt(data) {
         this.context.beginPath();
-        this.context.clearRect(0,0, this.canvas.height, this.canvas.width);
+        this.context.clearRect(0,0, 400, 800);
         data.frequencies.forEach((amplitude, frequency) => {
             this.context.lineTo(frequency, (400 - amplitude) / 2);
         });
