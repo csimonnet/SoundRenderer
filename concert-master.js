@@ -1,4 +1,4 @@
-import { SpectrumVisualizer } from "./spectrum-visualizer.js";
+import { VisualizerFactory } from "./factories/visualizer-factory.js";
 import { SoundAnalyser } from "./analyser.js";
 import { Synthesizer } from "./synth.js";
 
@@ -22,6 +22,9 @@ class ConcertMaster {
         audioElement,
 
     ) {
+
+        this.visualizerFactory = new VisualizerFactory();
+
         this.audioContext = new AudioContext();
         this.setupFormElement = setupFormElement;
         this.audioElement = audioElement;
@@ -46,8 +49,6 @@ class ConcertMaster {
             const form = event.currentTarget;
             this.cleanAudioGraph()
                 .then(() => {
-                    console.log(this);
-                    console.log(form);
                 this.audioContext = new AudioContext();
                 this.setupAudioGraph(form);
             });
@@ -118,10 +119,7 @@ class ConcertMaster {
  * @param {*} visualizerType 
  */
     setupVisualizer(visualizerType) {
-        switch (visualizerType) {
-            default: 
-                this.visualizer = new SpectrumVisualizer(this.canvasElement);
-        }
+        this.visualizer = this.visualizerFactory.create(visualizerType, this.canvasElement);
     }
 
 /**
