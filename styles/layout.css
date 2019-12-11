@@ -1,6 +1,6 @@
 body {
     background: black;
-    font-family: "Verdana";
+    font-family: 'Anonymous Pro', monospace;
     margin: 0px;
 }
 
@@ -8,7 +8,6 @@ header {
     border-bottom: 1px solid black;
     background: linear-gradient(  #D2FFA4,#4C9600);
     text-align: center;
-
     height: 100px;
 }
 
@@ -19,6 +18,32 @@ h1 {
     color: #333333;
 }
 
+label {
+    color: #4C9600;
+}
+
+.audio-source {
+    display:none;
+}
+
+.audio-source.current-source {
+    display: block;
+}
+
+.grid-block {
+    float: left;
+    padding: 20px;
+    margin: 50px;
+}
+
+#controls {
+    border: 1px solid #81FF00;
+}
+
 #sound-renderer {
     text-align: center;
+}
+
+.setup-config-field {
+    padding: 10px;
 }

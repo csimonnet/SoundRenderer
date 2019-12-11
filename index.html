@@ -1,44 +1,72 @@
 <!doctype html>
 <html>
     <head>
-        <title>Missimlab's synth</title>
+        <title>Missimlab's WaveSpy</title>
+        <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="styles/layout.css" />
         <link rel="stylesheet" href="styles/keyboard.css" />
     </head>
     <body>
         <header>
-            <h1>WaveShaper</h1>
+            <h1>WaveSpy</h1>
         </header>
-        <div id="sound-renderer">
-            <canvas id="rendering" style="background: black;" width="400" height="400"></canvas>
-        </div>
         
-        <div style="display: none;"><audio controls="controls" id="audio_source"><source src="sounds/autopilot.mp3" type="audio/mp3" /></audio></div>
+        <div class="layout-grid">
+           <div id="controls" class="grid-block">
+                <form id="setup">
+                    <div class="setup-config-field">                        
+                        <label for="Source">Choose a sound to visualize : </label>
+                        <select id="setup-source" name="source">
+                            <option value="audio_file">Presets songs</option>
+                            <option value="synth">Synthesizor</option>
+                        </select>
+                    </div>
+                    <div class="setup-config-field">
+                        <label for="Source">Choose a visualizer : </label>
+                        <select id="setup-visualizer" name="visualizer">
+                            <option value="spectrum">Spectrum</option>
+                        </select>
+                    </div>
+                    <!-- SOON
+                        <select id="preset">
+                            <option value="autopilot">Autopilot</option>
+                            </select>
+                    -->
+                </form>
 
-        <div id="synth-controller">
-            <select id="osc-1-wavetype">
-                <option value="sine">Sine</option>
-                <option value="square">Square</option>
-            </select>
-            <div id="synth-keyboard">
-                <div class="synth-key" data-key="40">C</div>
-                <div class="synth-key" data-key="41">C#</div>
-                <div class="synth-key" data-key="42">D</div>
-                <div class="synth-key" data-key="43">D#</div>
-                <div class="synth-key" data-key="44">E</div>
-                <div class="synth-key" data-key="45">F</div>
-                <div class="synth-key" data-key="46">F#</div>
-                <div class="synth-key" data-key="47">G</div>
-                <div class="synth-key" data-key="48">G#</div>
-                <div class="synth-key" data-key="49">A</div>
-                <div class="synth-key" data-key="50">A#</div>
-                <div class="synth-key" data-key="51">B</div>
+                <div class="audio-sources">
+                    <div id="audio_file" class="audio-source current-source">
+                        <audio controls="controls" id="audio_source"><source src="sounds/autopilot.mp3" type="audio/mp3" />
+                        </audio>
+                    </div>
+                    <div id="synth-controller" class="audio-source">
+                        <select id="osc-1-wavetype">
+                            <option value="sine">Sine</option>
+                            <option value="square">Square</option>
+                        </select>
+                        <div id="synth-keyboard">
+                            <div class="synth-key" data-key="40">C</div>
+                            <div class="synth-key" data-key="41">C#</div>
+                            <div class="synth-key" data-key="42">D</div>
+                            <div class="synth-key" data-key="43">D#</div>
+                            <div class="synth-key" data-key="44">E</div>
+                            <div class="synth-key" data-key="45">F</div>
+                            <div class="synth-key" data-key="46">F#</div>
+                            <div class="synth-key" data-key="47">G</div>
+                            <div class="synth-key" data-key="48">G#</div>
+                            <div class="synth-key" data-key="49">A</div>
+                            <div class="synth-key" data-key="50">A#</div>
+                            <div class="synth-key" data-key="51">B</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sound-renderer" class="grid-block">
+                <canvas id="rendering" style="background: black;" width="400" height="400"></canvas>
             </div>
         </div>
-
-
     </body>
     <footer>
-        <script type="module" src="soundrenderer.js"></script>
+        <script type="module" src="app.js"></script>
     </footer>
 </html>
