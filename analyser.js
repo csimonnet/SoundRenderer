@@ -1,6 +1,5 @@
 class SoundAnalyser {
 
-    //création d'un audio context avec la bonne source
     constructor(audioContext) {
         this.audioContext = audioContext;
         this.analyser = this.audioContext.createAnalyser();

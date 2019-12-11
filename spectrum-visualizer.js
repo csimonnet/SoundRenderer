@@ -1,4 +1,4 @@
-class SpectrumVisualizator {
+class SpectrumVisualizer {
     constructor(canvasElement) {
         this.canvas = canvasElement;
         this.context = canvasElement.getContext("2d");
@@ -16,4 +16,4 @@ class SpectrumVisualizator {
     }
 }
 
-export { SpectrumVisualizator };
+export { SpectrumVisualizer };

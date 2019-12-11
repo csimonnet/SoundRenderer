@@ -8,7 +8,7 @@ class Synthesizer {
         this.oscillator1 = this.audioContext.createOscillator();
         this.oscillator1.type = 'sine';
 
-        this.osc1GainNode = this.audioContext.createGain();
+        this.osc1GainNode = this.audioContext.createGain(); //TODO : à externaliser
         this.oscillator1.connect(this.osc1GainNode);
         this.osc1GainNode.gain.value = 0;
 

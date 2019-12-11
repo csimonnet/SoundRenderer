@@ -1,16 +1,88 @@
-import { SpectrumVisualizator } from "./spectrum-visualizator.js";
+import { SpectrumVisualizer } from "./spectrum-visualizer.js";
 import { SoundAnalyser } from "./analyser.js";
 import { Synthesizer } from "./synth.js";
 
 const SOURCE_TYPE_SYNTH = "synth";
+const SOURCE_TYPE_AUDIO_FILE = "audio_file";
 
 class ConcertMaster {
-    constructor(source, visualizatorType, canvasElement, synthElement, keyboardElement) {
+
+/**
+ * Setupping the application, , with html element to consider for configuration (audio source) and rendering
+ * @param {*} canvasElement 
+ * @param {*} setupFormElement 
+ * @param {*} synthElement 
+ * @param {*} keyboardElement 
+ * @param {*} audioElement
+ */
+    constructor(canvasElement, 
+        setupFormElement, 
+        synthElement, 
+        keyboardElement, 
+        audioElement,
+
+    ) {
         this.audioContext = new AudioContext();
-        
-        if (source === SOURCE_TYPE_SYNTH) {
+        this.setupFormElement = setupFormElement;
+        this.audioElement = audioElement;
+        this.canvasElement = canvasElement;
+        this.synthElement = synthElement;
+        this.keyboardElement = keyboardElement;
+        //setupping EVERYTHING
+       
+        this.setupAudioGraph(setupFormElement);
+        this.setupEvents(setupFormElement);
+
+        this.playFrame();
+
+    }
+
+/**
+ * Setup global event listeners
+ * @param {*} setupFormElement 
+ */
+    setupEvents(setupFormElement) {
+        this.setupFormElement.addEventListener('change', event => {
+            const form = event.currentTarget;
+            this.cleanAudioGraph()
+                .then(() => {
+                    console.log(this);
+                    console.log(form);
+                this.audioContext = new AudioContext();
+                this.setupAudioGraph(form);
+            });
+        });
+    }
+
+/**
+ * TODO : eventual garbage collector
+ */
+    cleanAudioGraph() {
+        return this.audioContext.close();
+        //to examinate, is it necessary ? ==> garbage collector
+    }
+
+/**
+ * Setupping audio source, visualizer from parameters specified 
+ * and connect source to audio context and analyser
+ * @param {*} form 
+ */
+    setupAudioGraph(form) {
+            this.analyser = new SoundAnalyser(this.audioContext);
+            this.setupSynth(this.synthElement, this.keyboardElement);
+            this.setupSource(document.getElementById('setup-source').value); //TODO : make it dom independant ?
+            this.setupVisualizer(document.getElementById('setup-visualizer').value);
+            this.source.connect(this.analyser.getWebAnalyser());
+            this.source.connect(this.audioContext.destination);
+    }
+
+/**
+ * Setupping objects and events for synthesizer
+ * @param {*} synthElement 
+ * @param {*} keyboardElement 
+ */
+    setupSynth(synthElement, keyboardElement) {
             this.synthesizer = new Synthesizer(this.audioContext);
-            this.source = this.synthesizer.getSource();
             synthElement.addEventListener('change', (event) => {
                 this.synthesizer.onChange(event)
             });
@@ -20,22 +92,41 @@ class ConcertMaster {
             keyboardElement.addEventListener('mousedown', (event) => {
                 this.synthesizer.onChange(event);
             });
-        } else if (source instanceof HTMLAudioElement) {
-            this.source = this.audioContext.createMediaElementSource(source);
-        }
-        
-        switch (visualizatorType) {
-            default: 
-                this.visualizator = new SpectrumVisualizator(canvasElement);
-        }
-
-        this.analyser = new SoundAnalyser(this.audioContext);
-        this.source.connect(this.analyser.getWebAnalyser());
-        this.source.connect(this.audioContext.destination);
-        this.playFrame();
-
     }
 
+/**
+ * Setupping source and its connections to analyser and audioContext
+ * @param {*} source 
+ */
+    setupSource(source) {
+        if (source === SOURCE_TYPE_SYNTH) {
+            this.synthElement.classList.add('current-source');
+            this.audioElement.classList.remove('current-source');
+            this.source = this.synthesizer.getSource();
+        } else if (source === SOURCE_TYPE_AUDIO_FILE) {
+            this.synthElement.classList.remove('current-source');
+            this.audioElement.classList.add('current-source');
+            this.source = this.audioContext.createMediaElementSource(document.getElementById('audio_source'));
+        }
+
+        this.source.connect(this.analyser.getWebAnalyser());
+        this.source.connect(this.audioContext.destination);
+    }
+
+/**
+ * 
+ * @param {*} visualizerType 
+ */
+    setupVisualizer(visualizerType) {
+        switch (visualizerType) {
+            default: 
+                this.visualizer = new SpectrumVisualizer(this.canvasElement);
+        }
+    }
+
+/**
+ * Draw data with visualizer
+ */
     playFrame() {
        
        requestAnimationFrame(() => this.playFrame());
@@ -43,7 +134,7 @@ class ConcertMaster {
            return false;
        }
        const soundData = this.analyser.getData();
-       this.visualizator.justDrawIt(soundData);
+       this.visualizer.justDrawIt(soundData);
     }
 }
 

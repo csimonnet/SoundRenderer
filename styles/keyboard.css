@@ -1,13 +1,8 @@
 .synth-key {
     display: inline-block;
-    height: 200px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     border: 1px solid black;
     background: white;
-}
-
-.synth-key.black {
-    background-color: black;
-    height: 100px;
 }
     
