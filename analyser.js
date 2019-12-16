@@ -13,15 +13,16 @@ class SoundAnalyser {
     getData() {
         var bufferLengthFrequency = this.analyser.frequencyBinCount;
         var bufferLengthTime = this.analyser.fftSize;
-        const frequencies = new Uint8Array(bufferLengthFrequency);
+        const frequencies = new Float32Array(bufferLengthFrequency);
         const timeData = new Float32Array(bufferLengthTime);
-        this.analyser.getByteFrequencyData(frequencies);
+        this.analyser.getFloatFrequencyData(frequencies);
         this.analyser.getFloatTimeDomainData(timeData);
         return {
             frequencies,
             timeData,
             bufferLengthFrequency,
-            bufferLengthTime
+            bufferLengthTime,
+            maxDecibels : this.analyser.maxDecibels
         };
     }
 }

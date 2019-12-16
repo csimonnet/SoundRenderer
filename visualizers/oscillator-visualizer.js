@@ -1,14 +1,12 @@
-class OscillatorVisualizer {
-    constructor(canvasElement) {
-        this.canvas = canvasElement;
-        this.context = canvasElement.getContext("2d");
-        this.context.beginPath();
-        this.context.strokeStyle = "#81FF00";
-    }
+import { BaseVisualizer } from './base-visualizer.js';
+
+class OscillatorVisualizer extends BaseVisualizer {
 
     justDrawIt(data) {
         this.context.beginPath();
-        this.context.clearRect(0,0, 400, 800);
+        this.context.clearRect(0,0, 800, 400);
+        this.drawGrid();
+        this.context.moveTo(0,200);
         const timeWidth = 800 / data.bufferLengthTime;
         let t = 0;
         data.timeData.forEach((waveform) => {
