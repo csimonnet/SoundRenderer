@@ -3,7 +3,7 @@ class SoundAnalyser {
     constructor(audioContext) {
         this.audioContext = audioContext;
         this.analyser = this.audioContext.createAnalyser();
-        this.analyser.fftSize = 2048;
+        this.analyser.fftSize = 1024;
     }
 
     getWebAnalyser() {
@@ -11,11 +11,17 @@ class SoundAnalyser {
     }
 
     getData() {
-        var bufferLength = this.analyser.frequencyBinCount;
-        const frequencies = new Uint8Array(bufferLength);
+        var bufferLengthFrequency = this.analyser.frequencyBinCount;
+        var bufferLengthTime = this.analyser.fftSize;
+        const frequencies = new Uint8Array(bufferLengthFrequency);
+        const timeData = new Float32Array(bufferLengthTime);
         this.analyser.getByteFrequencyData(frequencies);
+        this.analyser.getFloatTimeDomainData(timeData);
         return {
-            frequencies
+            frequencies,
+            timeData,
+            bufferLengthFrequency,
+            bufferLengthTime
         };
     }
 }

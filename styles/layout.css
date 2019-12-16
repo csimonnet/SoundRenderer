@@ -47,3 +47,7 @@ label {
 .setup-config-field {
     padding: 10px;
 }
+
+#debug {
+    color: white;
+}
