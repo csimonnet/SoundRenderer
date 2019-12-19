@@ -26,6 +26,8 @@ class Synthesizer {
         if (changedElement.classList.contains('synth-key')) {
             if (event.type === 'mousedown') {
                 this.oscillator1.frequency.value = this.getFrequencyFromKeyNumber(changedElement.getAttribute('data-key'));
+                document.getElementById('debug').innerText =  this.oscillator1.frequency.value;
+
                 this.osc1GainNode.gain.value = OSC_1_DEFAULT_VOLUME;
             }
 
