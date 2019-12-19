@@ -22,7 +22,7 @@ class BaseVisualizer {
     }
 
     drawYGrid() {
-        const yinterval = 100;
+        const yinterval = 20;
         let y = yinterval;
         while (y < CANVAS_HEIGHT) {
             this.context.moveTo(0,y);
