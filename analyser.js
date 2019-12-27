@@ -3,7 +3,7 @@ class SoundAnalyser {
     constructor(audioContext) {
         this.audioContext = audioContext;
         this.analyser = this.audioContext.createAnalyser();
-        this.analyser.fftSize = 1024;
+        this.analyser.fftSize = 4096;
     }
 
     getWebAnalyser() {
