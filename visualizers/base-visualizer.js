@@ -1,5 +1,5 @@
-const CANVAS_WIDTH = 1200;
-const CANVAS_HEIGHT = 600;
+const CANVAS_WIDTH = 400;
+const CANVAS_HEIGHT = 400;
 
 class BaseVisualizer {
 

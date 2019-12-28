@@ -12,7 +12,11 @@
         </header>
         
         <div class="layout-grid">
-           <div id="controls" class="grid-block">
+            <div id="settings" class="grid-block">
+           <div id="toggle-settings">Settings</div>
+
+           <div id="form-settings">
+
                <div id="debug">
                    
                </div>
@@ -40,6 +44,7 @@
                 </form>
 
                 <div class="audio-sources">
+                    
                     <div id="audio_file" class="audio-source current-source">
                         <audio controls="controls" id="audio_source"><source src="sounds/autopilot.mp3" type="audio/mp3" />
                         </audio>
@@ -66,8 +71,9 @@
                     </div>
                 </div>
             </div>
+            </div>
             <div id="sound-renderer" class="grid-block">
-                <canvas id="rendering" style="background: black;" width="1200" height="600"></canvas>
+                <canvas id="rendering" style="background: black;" width="400" height="400"></canvas>
             </div>
         </div>
     </body>

@@ -38,11 +38,13 @@ class ColorprintVisualizer extends BaseVisualizer {
     drawGrid(squareSide, squarePerLine) {
         let squareIndex = 0;
         let lineIndex = 0;
+        this.context.beginPath();
+        this.context.strokeRect(0,0,CANVAS_WIDTH, CANVAS_HEIGHT);
         for (lineIndex; lineIndex < squarePerLine + 1; lineIndex++) {
-            for (squareIndex = 0; squareIndex < squarePerLine; squareIndex++) {
-                this.context.strokeRect(squareIndex*squareSide, lineIndex*squareSide, squareSide, squareSide);
-            }
+            this.context.moveTo(0, lineIndex*squareSide);
+            this.context.lineTo(CANVAS_WIDTH, lineIndex*squareSide);
         }
+        this.context.stroke();
     }
 
     drawBorders(){}

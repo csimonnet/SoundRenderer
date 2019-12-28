@@ -8,7 +8,7 @@ header {
     border-bottom: 1px solid black;
     background: linear-gradient(  #D2FFA4,#4C9600);
     text-align: center;
-    height: 100px;
+    height: 60px;
 }
 
 h1 {
@@ -16,6 +16,7 @@ h1 {
     vertical-align: middle;
     padding: 10px;
     color: #333333;
+    font-size: 15px;
 }
 
 label {
@@ -32,12 +33,18 @@ label {
 
 .grid-block {
     float: left;
-    padding: 20px;
     margin: 50px;
 }
 
-#controls {
+#settings {
     border: 1px solid #81FF00;
+    background-color: black;
+    color: #4C9600;
+    padding: 20px;
+    margin: 50px;
+    border: 2px solid #4C9600;
+    background: black;
+    width: 30%;
 }
 
 #sound-renderer {
