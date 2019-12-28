@@ -19,6 +19,19 @@ class OscillatorVisualizer extends BaseVisualizer {
         this.context.stroke();
     }
 
+    drawGrid() {
+        this.drawBorders();
+        this.context.lineWidth = 1;
+        this.context.beginPath();
+        this.context.strokeStyle = "#D93400";
+        this.drawXGrid();
+        this.drawYGrid();
+        this.context.stroke();
+        this.context.strokeStyle = "#81FF00";
+        this.context.lineWidth = 1;
+    }
+
+
 }
 
 export { OscillatorVisualizer };

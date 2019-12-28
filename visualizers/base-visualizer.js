@@ -1,13 +1,13 @@
 const CANVAS_WIDTH = 1200;
-const CANVAS_HEIGHT = 400;
+const CANVAS_HEIGHT = 600;
 
 class BaseVisualizer {
 
     constructor(canvasElement) {
         this.canvas = canvasElement;
         this.context = canvasElement.getContext("2d");
+        this.context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         this.context.strokeStyle = "#81FF00";
-        this.context.lineWidth = 3;
     }
 
     drawBorders() {
@@ -44,16 +44,12 @@ class BaseVisualizer {
     drawGrid() {
         
         this.drawBorders();
-        this.context.lineWidth = 1;
-
         this.context.beginPath();
-
         this.context.strokeStyle = "#D93400";
         this.drawXGrid();
         this.drawYGrid();
         this.context.stroke();
         this.context.strokeStyle = "#81FF00";
-        this.context.lineWidth = 1;
 
 
     }
