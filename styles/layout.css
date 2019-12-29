@@ -58,3 +58,7 @@ label {
 #debug {
     color: white;
 }
+
+#upload-audio {
+    display: none;
+}
