@@ -24,10 +24,11 @@
                     <div class="setup-config-field">                        
                         <label for="Source">Choose a sound to visualize : </label>
                         <select id="setup-source" name="source">
-                            <option value="audio_file">Presets songs</option>
                             <option value="synth">Synthesizor</option>
+                            <option value="audio_file_upload">Choose a file</option>
                         </select>
                     </div>
+
                     <div class="setup-config-field">
                         <label for="Source">Choose a visualizer : </label>
                         <select id="setup-visualizer" name="visualizer">
@@ -36,17 +37,14 @@
                             <option value="colorprint">Colorprint</option>
                         </select>
                     </div>
-                    <!-- SOON
-                        <select id="preset">
-                            <option value="autopilot">Autopilot</option>
-                            </select>
-                    -->
                 </form>
 
                 <div class="audio-sources">
-                    
                     <div id="audio_file" class="audio-source current-source">
-                        <audio controls="controls" id="audio_source"><source src="sounds/autopilot.mp3" type="audio/mp3" />
+                        <div class="upload_file">
+                            <input type="file" name="upload_audio" id="upload_audio" accept=".wav,.mp3"/>
+                        </div>
+                        <audio controls="controls" id="audio_source" src="sounds/autopilot.mp3" type="audio/mp3" >
                         </audio>
                     </div>
                     <div id="synth-controller" class="audio-source">

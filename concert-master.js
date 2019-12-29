@@ -3,7 +3,7 @@ import { SoundAnalyser } from "./analyser.js";
 import { Synthesizer } from "./synth.js";
 
 const SOURCE_TYPE_SYNTH = "synth";
-const SOURCE_TYPE_AUDIO_FILE = "audio_file";
+const SOURCE_TYPE_AUDIO_FILE = "audio_file_upload";
 
 class ConcertMaster {
 
@@ -20,7 +20,7 @@ class ConcertMaster {
         synthElement, 
         keyboardElement, 
         audioElement,
-
+        inputAudioElement
     ) {
 
         this.visualizerFactory = new VisualizerFactory();
@@ -31,6 +31,7 @@ class ConcertMaster {
         this.canvasElement = canvasElement;
         this.synthElement = synthElement;
         this.keyboardElement = keyboardElement;
+        this.inputAudioElement = inputAudioElement;
         //setupping EVERYTHING
        
         this.setupAudioGraph(setupFormElement);
@@ -52,6 +53,10 @@ class ConcertMaster {
                 this.audioContext = new AudioContext();
                 this.setupAudioGraph(form);
             });
+        });
+
+        this.inputAudioElement.addEventListener('change', event => {
+            this.audioElement.querySelector('#audio_source').setAttribute('src', URL.createObjectURL(this.inputAudioElement.files[0]));
         });
     }
 
