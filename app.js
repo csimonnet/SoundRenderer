@@ -6,5 +6,6 @@ const concertMaster = new ConcertMaster(
     document.getElementById('synth-controller'),
     document.getElementById('synth-keyboard'),
     document.getElementById('audio_file'),
-    document.getElementById('upload_audio')
+    document.getElementById('upload_audio'),
+    document.getElementById('score-rendering')
 );

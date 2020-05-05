@@ -1,6 +1,7 @@
-import { VisualizerFactory } from "./factories/visualizer-factory.js";
-import { SoundAnalyser } from "./analyser.js";
-import { Synthesizer } from "./synth.js";
+import { VisualizerFactory } from "./modules/wavespy/factories/visualizer-factory.js";
+import { SoundAnalyser } from "./modules/wavespy/analyser.js";
+import { Synthesizer } from "./modules/synth/synth.js";
+import { Score } from "./modules/song/score.js";
 
 const SOURCE_TYPE_SYNTH = "synth";
 const SOURCE_TYPE_AUDIO_FILE = "audio_file_upload";
@@ -14,13 +15,15 @@ class ConcertMaster {
  * @param {*} synthElement 
  * @param {*} keyboardElement 
  * @param {*} audioElement
+ * @param {*} scoreCanvas
  */
     constructor(canvasElement, 
         setupFormElement, 
         synthElement, 
         keyboardElement, 
         audioElement,
-        inputAudioElement
+        inputAudioElement,
+        scoreCanvas
     ) {
 
         this.visualizerFactory = new VisualizerFactory();
@@ -32,11 +35,11 @@ class ConcertMaster {
         this.synthElement = synthElement;
         this.keyboardElement = keyboardElement;
         this.inputAudioElement = inputAudioElement;
+        this.score = new Score(scoreCanvas);
         //setupping EVERYTHING
        
         this.setupAudioGraph(setupFormElement);
         this.setupEvents(setupFormElement);
-
         this.playFrame();
 
     }
