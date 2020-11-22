@@ -1,10 +1,12 @@
 const TYPE_OSCILLATOR = 'oscillator';
 const TYPE_SPECTRUM = 'spectrum';
 const TYPE_COLORPRINT = 'colorprint';
+const TYPE_TONE = 'tone';
 
 import { OscillatorVisualizer } from '../visualizers/oscillator-visualizer.js';
 import { SpectrumVisualizer } from '../visualizers/spectrum-visualizer.js';
 import { ColorprintVisualizer } from '../visualizers/colorprint-visualizer.js';
+import { ToneVisualizer } from '../visualizers/tone-visualizer.js';
 
 
 class VisualizerFactory {
@@ -18,6 +20,9 @@ class VisualizerFactory {
             }
             case TYPE_COLORPRINT: {
                 return new ColorprintVisualizer(canvas);
+            }
+            case TYPE_TONE: {
+                return new ToneVisualizer(canvas);
             }
             default: {
                 throw `Visualizer ${visualizerType} not implemented (yet)`;
