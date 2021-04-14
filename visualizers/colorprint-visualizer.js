@@ -10,8 +10,6 @@ class ColorprintVisualizer extends BaseVisualizer {
         this.context.stroke();
         let frequencies = this.truncateFrequencies(data.frequencies);
 
-        const rangeWidth = CANVAS_WIDTH / frequencies.length;
-
         const squareNumberPerLine = Math.round(Math.sqrt(frequencies.length));
         const squareSide = Math.round(CANVAS_HEIGHT / squareNumberPerLine);
         const minDecibels = -75;//todo : all those Arbitrary values :'(

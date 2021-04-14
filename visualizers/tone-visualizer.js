@@ -15,8 +15,8 @@ class ToneVisualizer extends BaseVisualizer {
         const minDecibels = -100;
         const scaling = 40;
         data.frequencies.forEach((value, frequency) => {
-            document.getElementById('debug').innerText = frequency;
-            this.context.beginPath();
+
+        this.context.beginPath();
             this.context.strokeStyle = this.getToneColor(frequency);
             let decibelRange = minDecibels - data.maxDecibels - scaling;
             let height = (minDecibels - value) * CANVAS_HEIGHT / decibelRange;
